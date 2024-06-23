@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scroll-behavior: smooth;
+}
+
+.poppins {
+  font-family: "Poppins", Arial, Helvetica;
+}
+
+.gugi {
+  font-family: "Gugi",  Arial, Helvetica;
+}
+.inter {
+  font-family: "Inter",  Arial, Helvetica;
+}
+.roboto {
+  font-family: "Roboto",  Arial, Helvetica;
+}
+
+body {
+  background-color: black;
+  color: white;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: gray;
+  cursor: default;
+}
+
