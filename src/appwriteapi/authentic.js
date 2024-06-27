@@ -63,6 +63,13 @@ async updatename(newname){
     return await this.account.updateName(newname)
 }
 
+async logoutall(){
+    return await this.account.deleteSessions()
+}
+async listsession(){
+    return await this.account.listSessions()
+}
+
 }
 
 const AuthClient = new author()

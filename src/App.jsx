@@ -6,6 +6,7 @@ import Navbar from './componentes/Navbar'
 import { Outlet } from 'react-router-dom'
 import Readerbase from './appwriteapi/reader'
 import Screenloader from './componentes/Screenloader'
+import Footer from './componentes/Footer'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -20,13 +21,13 @@ const App = () => {
         if (reader.total>0) {
           dispatch(storelogin({ id: currentacc.$id, varyfied: currentacc.emailVerification, reader:reader.documents[0].$id }))
           setloading(false)
-          console.log("precreated", currentacc, reader.documents[0].$id );
+          console.log("precreated", currentacc.$id, reader.documents[0].$id );
         }else{
           const createreader = await Readerbase.createreader(currentacc.$id)
           if (createreader) {
             dispatch(storelogin({ id: currentacc.$id, varyfied: currentacc.emailVerification, reader:createreader.$id }))
             setloading(false)
-          console.log("nowcreated", currentacc, createreader.$id);
+          console.log("nowcreated", currentacc.$id, createreader.$id);
           }
         }
       } else {
@@ -47,7 +48,10 @@ const App = () => {
   ) : (
     <>
       <Navbar />
+      <div className=' min-h-[120vh] max-h-full'>
       <Outlet />
+      </div>
+      <Footer/>
     </>
   )
 }

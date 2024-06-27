@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from '../componentes/Header'
 import Ariticalcards from '../componentes/blog/Ariticalcards'
-import Creatorbase from '../appwriteapi/creator'
 import Blogbase from '../appwriteapi/blogdatabase'
-import { useSelector } from 'react-redux'
-
 import InfiniteScroll from 'react-infinite-scroll-component'
+import Noarticals from '../componentes/Noarticals'
 
 
 const Home = () => {
   const [artics, setartics] = useState([])
   const [more, setmore] = useState(true)
 
- async function getarticals () {
+  async function getarticals() {
     try {
       let data = (await Blogbase.listblog()).documents
       setartics(data)
@@ -21,13 +19,15 @@ const Home = () => {
     }
   }
 
-  const nextblogs = async()=>{
+  const nextblogs = async () => {
     try {
       const lastId = artics[artics.length - 1].$id;
       let nextdata = (await Blogbase.listblogsbyinfint(lastId)).documents
-      if (nextdata.length>0) {
-        setartics(pre=>[...pre, ...  nextdata])
+      if (nextdata.length > 0) {
+        setartics(pre => [...pre, ...nextdata])
         setmore(true)
+      } else if (nextdata.length == 0) {
+        setmore(false)
       } else {
         setmore(false)
       }
@@ -38,29 +38,27 @@ const Home = () => {
 
 
 
-  useEffect(()=>{
+  useEffect(() => {
     getarticals()
-  },[])
-  return (
+  }, [])
+  return artics ? (
     <>
-    <Header/>
+      <Header />
 
-      <InfiniteScroll 
-      dataLength={artics.length}
-      next={nextblogs}
-      hasMore={more}
-      loader={<h4>Loading...</h4>}
-      className='w-[90%] mx-auto my-40 flex gap-3 flex-wrap'>
+      {artics.length !== 0 ? (<InfiniteScroll
+        dataLength={artics.length}
+        next={nextblogs}
+        hasMore={more}
+        loader={<h4>Loading...</h4>}
+        className='w-[90%] mx-auto my-40 flex gap-3 flex-wrap'>
 
-      {artics.map((e)=>(
-        <Ariticalcards key={e.$id} datas={e}/>
-      ))
-      
-    }
-    </InfiniteScroll>
+        {artics.map((e) => (
+          <Ariticalcards key={e.$id} datas={e} />
+        ))}
+      </InfiniteScroll>) : (<Noarticals />)}
 
     </>
-  )
+  ) : null
 }
 
 export default Home

@@ -14,36 +14,40 @@ const Artical = () => {
     const [logourl, setlogourl] = useState("")
     const [subscribed, setsubscribed] = useState(false)
     const [creatordata, setcreatordata] = useState({})
-    const { userdata, readerid } = useSelector(state => state.authstore)
+    const { userdata, readerid, status } = useSelector(state => state.authstore)
 
 
     const getartical = async () => {
         try {
+            console.log("art");
             const data = await Blogbase.getoneblog(articalid)
             const cover = await Storagebucket.bcoverforview(data.coverimg)
             const creatordetail = await Creatorbase.getonecreator(data.creatorid)
             const logo = await Storagebucket.logoforpreview(creatordetail.creatorlogo)
-
-            let allfolleows = (await Readerbase.getreaderbyuserid(userdata)).documents[0].following
-            console.log("follerw", creatordetail.$id, allfolleows);
-            const isfo = allfolleows.includes(creatordetail.$id)
-            setsubscribed(isfo)
-            console.log(isfo);
-            setfollowers(allfolleows)
+            console.log("stoper");
             setlogourl(logo.href)
-            console.log(data, cover, creatordetail);
             setartical(data)
             setcreatordata(creatordetail)
             setcoverurl(cover.href)
             updates(data.$id, data.view)
+            return creatordetail.$id
         } catch (error) {
             console.log(error);
         }
     }
 
+    const initsubscription = async(id)=>{
+        console.log("init");
+        let allfolleows = (await Readerbase.getreaderbyuserid(userdata)).documents[0].following
+        const isfo = allfolleows.includes(id)
+        console.log("incude", isfo);
+        setsubscribed(isfo)
+        setfollowers(allfolleows)
+    }
+
     const subscribtion = async () => {
+        if (!status) return
         if (!subscribed) {
-            console.log("subsc");
             const addnew = [...followers, creatordata.$id]
             const addfollowers = Number(eval(creatordata.followers + 1))
             try {
@@ -88,7 +92,12 @@ const Artical = () => {
     }
 
     useEffect(() => {
-        getartical()
+        (async()=>{
+          let id = await  getartical()
+            if (status) {
+                initsubscription(id)
+            }
+        })()
     }, [articalid])
 
     return coverurl ? (
@@ -127,8 +136,8 @@ const Artical = () => {
                 </div>
             </div>
 
-            <div className='w-[70%] pt-72 pb-20 mx-auto'>
-                <pre className=' inter text-[1.1rem] font-medium tracking-tighter leading-[1.8rem]  whitespace-break-spaces'>{artical.comtent}</pre>
+            <div className='w-[60%] pt-72 pb-20 mx-auto'>
+                <pre className='roboto text-[1.1rem]  text-neutral-300 tracking-tighter leading-[1.8rem]  whitespace-break-spaces'>{artical.comtent}</pre>
             </div>
 
         </>

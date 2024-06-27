@@ -4,6 +4,7 @@ import Ariticalcards from '../blog/Ariticalcards'
 import Blogbase from '../../appwriteapi/blogdatabase'
 import { useSelector } from 'react-redux'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import Noarticals from '../Noarticals'
 
 const Overview = () => {
   const {creatorid} = useSelector(state=> state.creatorstore)
@@ -43,7 +44,7 @@ const Overview = () => {
         <Creatoroverview/>
     </div>
     
-    <InfiniteScroll 
+   { artics.length!==0?(<InfiniteScroll 
       dataLength={artics.length}
       next={nextblogs}
       hasMore={more}
@@ -52,10 +53,8 @@ const Overview = () => {
 
       {artics.map((e)=>(
         <Ariticalcards key={e.$id} datas={e}/>
-      ))
-      
-    }
-    </InfiniteScroll>
+      ))}
+    </InfiniteScroll>):(<Noarticals/>)}
 
     </>
   ):null

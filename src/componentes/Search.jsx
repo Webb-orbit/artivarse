@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 
-const Search = ({bg, color="text-neutral-300"}) => {
+const Search = ({bg="bg-neutral-800", color="text-neutral-300"}) => {
   const {params} = useParams()
   const naviget = useNavigate()
 
@@ -18,7 +18,7 @@ const Search = ({bg, color="text-neutral-300"}) => {
 
 
   return (
-      <div className={`bg-neutral-800 w-full  flex h-[2rem]  items-center px-3 rounded-md ${bg} ${color}`} >
+      <div className={` w-full  flex h-[2rem]  items-center px-3 rounded-md ${bg} ${color}`} >
         <span className=" select-none material-symbols-outlined font-semibold text-[0.9rem]">search</span>
       <form onSubmit={handleSubmit(submit)} className='w-full'>
         <input

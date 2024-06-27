@@ -34,7 +34,7 @@ const Createcreator = () => {
     }
 
     const submitcreate = async (data) => {
-        console.log("creataaaaaaaaaaaaaa", data);
+        if(!emailvariy) return
         try {
             let uploadlogo = await Storagebucket.uploadlogo(logoforupload)
             let uploadcover = await Storagebucket.uploadbanner(coverforupload)
@@ -55,16 +55,19 @@ const Createcreator = () => {
         }
     }
 
+    if (!emailvariy) {
+        return <>
+        <div className='w-full h-screen flex flex-col items-center justify-center'>
+            <p>Verify your email first</p>
+            <Link className='text-[#a7fb1f]' to={"/profile"}>Verify email</Link>
+        </div>
+    </>
+    }
+
 
     return (
         <>
          {isSubmitting && <Screenloader send={"createing"} />}
-            {!emailvariy && <>
-                <div className='w-full h-screen flex flex-col items-center justify-center'>
-                    <p>Verify your email first</p>
-                    <Link className='text-[#a7fb1f]' to={"/profile"}>Verify email</Link>
-                </div>
-            </>}
 
             <div className=' w-[70%] mx-auto py-10'>
             <h2 className="select-none text-[1.5rem] my-6 capitalize poppins"><span className=" font-medium text-[#a7fb1f]">create</span> channal</h2>

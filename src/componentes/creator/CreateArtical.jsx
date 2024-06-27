@@ -182,7 +182,7 @@ const CreateArtical = ({ edit = null }) => {
                     <fieldset className={`w-full border-2  p-2 rounded-md flex flex-col border-[#a7fb1f] ${errors.content && "border-red-500"}`}>
                         <legend className='mx-5 px-2 capitalize text-neutral-200 text-[0.9rem]'>main content: <span className='animate-pulse'>{`${errors.content ? errors.content.message : ""}`}</span></legend>
                         <textarea placeholder='The Beginning: The Big Bang The prevailing scientific theory about the origin of the universe is the Big Bang theory. According to this model, approximately 13.8 billion years ago, the universe began from an incredibly hot, dense state. This singularity exploded, leading to a rapid expansion that continues to this day. In the first few seconds after the Big Bang, the universe was a hot soup of particles, but as it expanded, it cooled, allowing quarks and electrons to form. These particles eventually combined to form protons and neutrons, leading to the creation of simple atoms like hydrogen and helium....' className=' text-[0.9rem] h-[30rem] w-full bg-transparent  scrollbar resize-none border-none outline-none' maxLength={50000} spellCheck="false"
-                            {...register("content", { required: "Required", minLength: { value: 200, message: "Content must be at least 200 characters." } })}
+                            {...register("content", { required: "Required", minLength: { value: 1000, message: "Content must be at least 1000 characters." } })}
                         ></textarea>
                         <p className=' self-end text-[0.6rem] text-neutral-200'>{watchAllFields.content?.length}/50000</p>
                     </fieldset>
