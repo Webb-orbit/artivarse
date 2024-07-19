@@ -21,13 +21,11 @@ const App = () => {
         if (reader.total>0) {
           dispatch(storelogin({ id: currentacc.$id, varyfied: currentacc.emailVerification, reader:reader.documents[0].$id }))
           setloading(false)
-          console.log("precreated", currentacc.$id, reader.documents[0].$id );
         }else{
           const createreader = await Readerbase.createreader(currentacc.$id)
           if (createreader) {
             dispatch(storelogin({ id: currentacc.$id, varyfied: currentacc.emailVerification, reader:createreader.$id }))
             setloading(false)
-          console.log("nowcreated", currentacc.$id, createreader.$id);
           }
         }
       } else {

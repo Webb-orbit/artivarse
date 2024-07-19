@@ -29,7 +29,6 @@ import Creatorsettings from './componentes/creator/Creatorsettings.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={stores}>
-
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />}>
@@ -56,11 +55,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path='articals' element={<Creatorarticals />} />
             <Route path='settings' element={<Creatorsettings />} />
           </Route>
-
-
         </Route>
       </Routes>
     </BrowserRouter>
-
   </Provider>
 )

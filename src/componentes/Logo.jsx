@@ -1,5 +1,4 @@
 import React from 'react'
-import logo from "../midea/pikaso.png"
 import {Link} from "react-router-dom"
 
 const Logo = () => {
