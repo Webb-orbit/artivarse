@@ -38,13 +38,14 @@ export const Profile = () => {
       console.log("toast show", error);
     }
   }
-  const updateemails = async(e)=>{
+
+  const updateemails = async (e) => {
     e.preventDefault()
     try {
       let update = await AuthClient.updateemail(email, password)
       if (update) {
         console.log("susses");
-        setupdater(pre=> !pre)
+        setupdater(pre => !pre)
         setemailtoggle(false)
         setnametoggle(false)
         setpasswordtoggle(false)
@@ -53,13 +54,14 @@ export const Profile = () => {
       console.log("toast show", error);
     }
   }
-  const updatename= async(e)=>{
+  
+  const updatename = async (e) => {
     e.preventDefault()
     try {
       let update = await AuthClient.updatename(newname)
       if (update) {
         console.log("susses");
-        setupdater(pre=> !pre)
+        setupdater(pre => !pre)
         setemailtoggle(false)
         setnametoggle(false)
         setpasswordtoggle(false)
@@ -69,13 +71,13 @@ export const Profile = () => {
     }
   }
 
-  const changepassword  = async(e)=>{
+  const changepassword = async (e) => {
     e.preventDefault()
     try {
       let update = await AuthClient.changepassword(userdata.email)
       if (update) {
         console.log("susses");
-        setupdater(pre=> !pre)
+        setupdater(pre => !pre)
         setemailtoggle(false)
         setnametoggle(false)
         setpasswordtoggle(false)
@@ -137,13 +139,13 @@ export const Profile = () => {
           </div>
 
           <div className=" w-full flex flex-col items-start mt-[5rem] gap-4" >
-            <button onClick={()=>setemailtoggle(pre=> !pre)} className="px-2 select-none py-1 text-[0.8rem] rounded-md font-medium capitalize text-black bg-[#a7fb1f] ">change email</button>
+            <button onClick={() => setemailtoggle(pre => !pre)} className="px-2 select-none py-1 text-[0.8rem] rounded-md font-medium capitalize text-black bg-[#a7fb1f] ">change email</button>
 
             {!userdata.emailVerification && <button onClick={varifyemail} className="px-2 select-none py-1 text-[0.8rem] rounded-md font-medium capitalize text-black bg-[#a7fb1f]">Verify email</button>}
 
-            <button onClick={()=>setpasswordtoggle(pre=> !pre)} className="px-2 py-1 select-none text-[0.8rem] rounded-md font-medium capitalize text-black bg-[#a7fb1f]">change password</button>
+            <button onClick={() => setpasswordtoggle(pre => !pre)} className="px-2 py-1 select-none text-[0.8rem] rounded-md font-medium capitalize text-black bg-[#a7fb1f]">change password</button>
 
-            <button onClick={()=>setnametoggle(pre=> !pre)} className="px-2 select-none py-1 text-[0.8rem] rounded-md font-medium capitalize text-black bg-[#a7fb1f]">change name</button>
+            <button onClick={() => setnametoggle(pre => !pre)} className="px-2 select-none py-1 text-[0.8rem] rounded-md font-medium capitalize text-black bg-[#a7fb1f]">change name</button>
           </div>
 
         </div>
@@ -151,33 +153,33 @@ export const Profile = () => {
 
       <Card lable={"change email"} opener={emailtoggle} setopener={setemailtoggle}>
         <div className="w-full h-full ">
-        <form onSubmit={updateemails} className="flex w-full h-full  flex-col items-center justify-center gap-6">
-          <input placeholder="newemail" type="text" value={email} spellCheck="false" onChange={(e)=>setemail(e.target.value)} className="px-2 border-2 border-[#a7fb1f] py-1 bg-neutral-800 rounded-md text-[0.9rem] outline-none w-[80%]" />
-          <input placeholder="password" type="text" value={password} spellCheck="false" onChange={(e)=>setpassword(e.target.value)} className="px-2 border-2 border-[#a7fb1f] py-1 rounded-md bg-neutral-900 text-[0.9rem] outline-none w-[80%]" />
-          <button type="submit" className="px-2 py-1 w-[50%] text-[0.8rem] rounded-md font-medium capitalize text-black bg-[#a7fb1f]">submit</button>
-        </form>
+          <form onSubmit={updateemails} className="flex w-full h-full  flex-col items-center justify-center gap-6">
+            <input placeholder="newemail" type="text" value={email} spellCheck="false" onChange={(e) => setemail(e.target.value)} className="px-2 border-2 border-[#a7fb1f] py-1 bg-neutral-800 rounded-md text-[0.9rem] outline-none w-[80%]" />
+            <input placeholder="password" type="text" value={password} spellCheck="false" onChange={(e) => setpassword(e.target.value)} className="px-2 border-2 border-[#a7fb1f] py-1 rounded-md bg-neutral-900 text-[0.9rem] outline-none w-[80%]" />
+            <button type="submit" className="px-2 py-1 w-[50%] text-[0.8rem] rounded-md font-medium capitalize text-black bg-[#a7fb1f]">submit</button>
+          </form>
         </div>
       </Card>
 
       <Card lable={"change name"} opener={nametoggle} setopener={setnametoggle}>
-      <div className="w-full h-full ">
-        <form onSubmit={updatename} className="flex w-full h-full  flex-col items-center justify-center gap-6">
-        <input placeholder="your name" type="text"  value={newname} spellCheck="false" onChange={(e)=>setnewname(e.target.value)} className="px-2 border-2 border-[#a7fb1f] py-1 bg-neutral-900 rounded-md text-[0.9rem] outline-none w-[80%]" />
-        <button type="submit" className="px-2 py-1 w-[50%] text-[0.8rem] rounded-md font-medium capitalize text-black bg-[#a7fb1f]">submit</button>
-        </form>
-      </div>
+        <div className="w-full h-full">
+          <form onSubmit={updatename} className="flex w-full h-full  flex-col items-center justify-center gap-6">
+            <input placeholder="your name" type="text" value={newname} spellCheck="false" onChange={(e) => setnewname(e.target.value)} className="px-2 border-2 border-[#a7fb1f] py-1 bg-neutral-900 rounded-md text-[0.9rem] outline-none w-[80%]" />
+            <button type="submit" className="px-2 py-1 w-[50%] text-[0.8rem] rounded-md font-medium capitalize text-black bg-[#a7fb1f]">submit</button>
+          </form>
+        </div>
       </Card>
 
       <Card lable={"change password"} opener={passwordtoggle} setopener={setpasswordtoggle}>
-      <div className="w-full h-full ">
-        <form onSubmit={changepassword} className="flex w-full h-full  flex-col items-center justify-center gap-6">
-          <div className="flex items-center flex-col">
-        <p className=" capitalize text-[0.9rem]">get email to change password</p>
-          <p className=" font-medium text-[0.7rem]">{userdata.email}</p>
-          </div>
-        <button type="submit" className="px-2 py-1 w-[50%] text-[0.8rem] rounded-md font-medium capitalize text-black bg-[#a7fb1f]">get email</button>
-        </form>
-      </div>
+        <div className="w-full h-full">
+          <form onSubmit={changepassword} className="flex w-full h-full  flex-col items-center justify-center gap-6">
+            <div className="flex items-center flex-col">
+              <p className=" capitalize text-[0.9rem]">get email to change password</p>
+              <p className=" font-medium text-[0.7rem]">{userdata.email}</p>
+            </div>
+            <button type="submit" className="px-2 py-1 w-[50%] text-[0.8rem] rounded-md font-medium capitalize text-black bg-[#a7fb1f]">get email</button>
+          </form>
+        </div>
       </Card>
     </>
   ) : null

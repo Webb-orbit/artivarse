@@ -56,7 +56,7 @@ const Signup = () => {
           </div>
         </div>
         <div>
-<p className=' capitalize text-[0.8rem]'>alrady have an account? <Link className=' text-lime-200 font-medium' to={"/login"}>login</Link></p>
+          <p className=' capitalize text-[0.8rem]'>alrady have an account? <Link className=' text-lime-200 font-medium' to={"/login"}>login</Link></p>
         </div>
       </div>
     </div>

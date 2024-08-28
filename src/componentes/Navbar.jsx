@@ -7,21 +7,20 @@ import AuthClient from '../appwriteapi/authentic'
 import Creatorbase from '../appwriteapi/creator'
 
 const Navbar = () => {
-    const {status} = useSelector(state => state.authstore)
+    const { status } = useSelector(state => state.authstore)
     const [toggle, settoggle] = useState(false)
     const [creatorhas, setcreatorhas] = useState(false)
     const [logo, setlogo] = useState()
     const [userdata, setuserdata] = useState({})
 
-    const initfun = async()=>{
-        console.log("navber");
+    const initfun = async () => {
         const user = await AuthClient.getcurrentuser()
         if (user) {
             setuserdata(user)
             const avatar = await AuthClient.getavatar(user.name)
             const iscreator = await Creatorbase.getcreatorbyuserid(user.$id)
             if (avatar && iscreator) {
-                let cretorhave = (iscreator.total>0)
+                let cretorhave = (iscreator.total > 0)
                 setlogo(avatar.href)
                 setcreatorhas(cretorhave)
             }
@@ -35,7 +34,7 @@ const Navbar = () => {
     const navlinks = [
         {
             name: "create new",
-            url: "channal/create-artical",
+            url: "/channal/create-artical",
             active: status,
             type: "button"
         },
@@ -52,7 +51,7 @@ const Navbar = () => {
         <div className='poppins relative bg-black py-2 flex h-16 items-center justify-between px-3 text-neutral-50'>
             <Logo />
             <div className='w-[30%]'>
-            <Search />
+                <Search />
             </div>
             <div className='flex w-fit justify-end items-center'>
                 <div className=' w-full flex items-center justify-end gap-2'>
@@ -90,9 +89,9 @@ const Navbar = () => {
                     <Link to={"/Subscriptions"} >
                         <p className=' w-full p-2 text-[0.8rem] capitalize rounded-md font-medium text-neutral-400 hover:bg-neutral-600/50 hover:text-neutral-200'>Subscriptions</p>
                     </Link>
-                    {creatorhas? (<Link to={"/channal/overview"} >
+                    {creatorhas ? (<Link to={"/channal/overview"} >
                         <p className=' w-full p-2 text-[0.8rem] capitalize rounded-md font-medium text-neutral-400 hover:bg-neutral-600/50 hover:text-neutral-200'>view your channel</p>
-                    </Link>):(<Link to={"/createchannel"} >
+                    </Link>) : (<Link to={"/createchannel"} >
                         <p className=' w-full p-2 text-[0.8rem] capitalize rounded-md font-medium text-neutral-400 hover:bg-neutral-600/50 hover:text-neutral-200'>create channel</p>
                     </Link>)
                     }

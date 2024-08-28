@@ -24,7 +24,7 @@ const Login = () => {
       }
     } catch (error) {
       console.error(error);
-      setError("root", {message:error.response.message})
+      setError("root", { message: error.response.message })
     }
   }
 
@@ -53,16 +53,16 @@ const Login = () => {
           <div>
             <form onSubmit={handleSubmit(controllelog)}>
               <input placeholder='email' type="email" autoComplete='false' spellCheck="false" className='w-full rounded-md mt-4 h-10 px-2 text-[0.9rem] bg-black/50 outline-1 outline-neutral-400/50 outline' {
-                ...register("email", { pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,required: "email is must" })
+                ...register("email", { pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, required: "email is must" })
               } />
               {errors.email && <p>{errors.email.message}</p>}
               <input placeholder='password' autoComplete='false' type="text" spellCheck="false" className='w-full mt-4  rounded-md h-10 px-2 text-[0.9rem] bg-black/50 outline-1 outline-neutral-400/50 outline'
                 {
-                ...register("password", {required: "password  is must"})
+                ...register("password", { required: "password  is must" })
                 }
               />
               {errors.password && <p>{errors.password.message}</p>}
-              <button  className='w-full mt-8 rounded-md h-8 px-2 text-[1rem] font-medium  bg-[#a7fb1f] text-black outline-1 outline-neutral-400/50 outline' type="submit">{isSubmitting?"loading":"login"}</button>
+              <button className='w-full mt-8 rounded-md h-8 px-2 text-[1rem] font-medium  bg-[#a7fb1f] text-black outline-1 outline-neutral-400/50 outline' type="submit">{isSubmitting ? "loading" : "login"}</button>
             </form>
           </div>
           <div className='flex flex-col items-center gap-8'>
@@ -84,7 +84,7 @@ const Login = () => {
           <form onSubmit={changepassword} className="flex w-full h-full  flex-col items-center justify-center gap-6">
             <div className="flex items-center flex-col w-[50%]">
               <p className=" capitalize text-[0.9rem]">get email to change password</p>
-              <input placeholder="your email" type="email" className="px-2  border-2 border-[#a7fb1f] py-1 bg-neutral-900 rounded-md text-[0.9rem] outline-none w-full" value={passemail} onChange={(e)=>  setpassemail(e.target.value)}
+              <input placeholder="your email" type="email" className="px-2  border-2 border-[#a7fb1f] py-1 bg-neutral-900 rounded-md text-[0.9rem] outline-none w-full" value={passemail} onChange={(e) => setpassemail(e.target.value)}
               />
             </div>
             <button type="submit" className="px-2 py-1  text-[0.8rem] rounded-md font-medium capitalize text-black bg-[#a7fb1f]">change password</button>

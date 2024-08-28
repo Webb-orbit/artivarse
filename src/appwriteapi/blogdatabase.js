@@ -17,7 +17,7 @@ async createblog(blogtitle, bshortdes, view, likes, comtent, category, btags, cr
 }
 
 async listblog(){
-    return await this.blog.listDocuments(appwriteconf.database, appwriteconf.blogcollon,    [
+    return await this.blog.listDocuments(appwriteconf.database, appwriteconf.blogcollon, [
         Query.limit(6),
     ])
 }

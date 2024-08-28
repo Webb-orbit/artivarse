@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import AuthClient from '../../appwriteapi/authentic';
 import { useNavigate } from 'react-router-dom';
 
@@ -22,6 +22,15 @@ const Danger = () => {
       if(deletes) {
         naviget("/")
       }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const deleteaccount = async()=>{
+    try {
+      console.log("hello");
+      
     } catch (error) {
       console.log(error);
     }
@@ -53,7 +62,7 @@ const Danger = () => {
       <div className='p-6'>
         <h3 className='select-none text-[1rem] capitalize poppins'>delete account</h3>
         <p className='text-[0.8rem] text-neutral-300'>Deleting your creator account will remove all articles, subscriptions, and any associated data from the account!</p>
-        <button className="px-2 py-1 m-4 text-black text-[0.9rem] rounded-md font-medium capitalize bg-red-600">delete account</button>
+        <button onClick={deleteaccount} className="px-2 py-1 m-4 text-black text-[0.9rem] rounded-md font-medium capitalize bg-red-600">delete account</button>
       </div>
     </div>
   )

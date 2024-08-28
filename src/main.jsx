@@ -55,6 +55,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path='articals' element={<Creatorarticals />} />
             <Route path='settings' element={<Creatorsettings />} />
           </Route>
+          
         </Route>
       </Routes>
     </BrowserRouter>
